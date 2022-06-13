@@ -18,7 +18,7 @@ async function start () {
   try {
     await dbConnect()
     app.listen(PORT, () => {
-      console.log('Server has been started...')
+      console.log(`Server has been started at ${PORT}`)
     })
   } catch (e) {
     console.log(e)
