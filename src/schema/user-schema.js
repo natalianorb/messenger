@@ -4,14 +4,18 @@ const {
   GraphQLID,
   GraphQLList
 } = graphql
+const { ChatType } = require('./chat-schema');
 
 const UserType = new GraphQLObjectType({
   name: 'UserType',
   fields: () => ({
     id: { type: GraphQLID },
     email: { type: GraphQLString },
-    name: { type: GraphQLString },
+    fullName: { type: GraphQLString },
     username: { type: GraphQLString },
+    chats: {
+      type: new GraphQLList(ChatType)
+    },
     contacts: {
       type: new GraphQLList(UserType)
     }

@@ -2,12 +2,12 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const messageSchema = new Schema({
-  author: {
-    type: String,
+  authorID: {
+    type: ObjectId,
     required: true
   },
-  chat: {
-    type: String,
+  chatID: {
+    type: ObjectId,
     required: true
   },
   content: {
