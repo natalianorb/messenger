@@ -1,7 +1,6 @@
 const graphql = require('graphql')
 const {
-  GraphQLObjectType, GraphQLString,
-  GraphQLID, GraphQLSchema,
+  GraphQLObjectType, GraphQLString, GraphQLSchema,
   GraphQLList, GraphQLNonNull
 } = graphql
 const UserType = require('./user-schema')
@@ -12,9 +11,9 @@ const RootQuery = new GraphQLObjectType({
   fields: {
     user: {
       type: UserType,
-      args: { id: { type: GraphQLID } },
+      args: { email: { type: GraphQLString }, password: { type: GraphQLString} },
       resolve (parent, args) {
-        return User.findById(args.id)
+        return User.find({$and: [{ email: args.email }, {password: args.password}] })
       }
     },
     users: {
