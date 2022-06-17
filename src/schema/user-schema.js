@@ -11,8 +11,8 @@ const UserType = new GraphQLObjectType({
   fields: () => ({
     id: { type: GraphQLID },
     email: { type: GraphQLString },
-    fullName: { type: GraphQLString },
-    username: { type: GraphQLString },
+    password: { type: GraphQLString },
+    name: { type: GraphQLString },
     chats: {
       type: new GraphQLList(ChatType)
     },

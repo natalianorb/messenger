@@ -37,13 +37,13 @@ const MutationType = new GraphQLObjectType({
     createUser: {
       type: UserType,
       args: {
-        username: { type: new GraphQLNonNull(GraphQLString) },
-        email: { type: new GraphQLNonNull(GraphQLString) }
+        email: { type: new GraphQLNonNull(GraphQLString) },
+        password: { type: new GraphQLNonNull(GraphQLString) }
       },
       resolve (parent, args) {
         const user = new User({
-          username: args.username,
-          email: args.email
+          email: args.email,
+          password: args.password,
         })
         return user.save()
       }
