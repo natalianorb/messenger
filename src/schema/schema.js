@@ -11,7 +11,10 @@ const RootQuery = new GraphQLObjectType({
   fields: {
     user: {
       type: UserType,
-      args: { email: { type: GraphQLString }, password: { type: GraphQLString} },
+      args: { 
+        email: { type: new GraphQLNonNull(GraphQLString) }, 
+        password: { type: new GraphQLNonNull(GraphQLString)} 
+      },
       resolve (parent, args) {
         return User.find({$and: [{ email: args.email }, {password: args.password}] })
       }
