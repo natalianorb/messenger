@@ -9,6 +9,7 @@ const {
 } = graphql;
 const UserType = require('./user-schema');
 const User = require('../models/user');
+const LoginInputType = require('./login-input-schema');
 
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
@@ -16,12 +17,11 @@ const RootQuery = new GraphQLObjectType({
     user: {
       type: UserType,
       args: {
-        email: { type: new GraphQLNonNull(GraphQLString) },
-        password: { type: new GraphQLNonNull(GraphQLString) },
+        input: { type: new GraphQLNonNull(LoginInputType) },
       },
-      resolve(parent, args) {
-        return User.find({
-          $and: [{ email: args.email }, { password: args.password }],
+       resolve (parent, { input }) {
+        return User.findOne({
+          $and: [{ email: input.email }, { password: input.password }],
         });
       },
     },
