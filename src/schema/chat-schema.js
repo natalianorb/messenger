@@ -1,4 +1,5 @@
 const graphql = require('graphql');
+
 const {
   GraphQLObjectType, GraphQLString,
   GraphQLID, GraphQLList,
@@ -11,22 +12,22 @@ const MessageType = new GraphQLObjectType({
     author: { type: GraphQLID },
     chat: { type: GraphQLID },
     content: {
-      type: GraphQLString
-    }
-  })
-})
+      type: GraphQLString,
+    },
+  }),
+});
 
 const ChatType = new GraphQLObjectType({
   name: 'ChatType',
   fields: () => ({
     id: { type: GraphQLID },
     members: {
-      type: new GraphQLList(GraphQLID)
-    }
-  })
-})
+      type: new GraphQLList(GraphQLID),
+    },
+  }),
+});
 
 module.exports = {
   MessageType,
-  ChatType
-}
+  ChatType,
+};

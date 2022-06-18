@@ -1,28 +1,28 @@
-const express = require('express')
-const { graphqlHTTP } = require('express-graphql')
-const cors = require('cors')
-const schema = require('./schema/schema')
-const dbConnect = require('./database')
+const express = require('express');
+const { graphqlHTTP } = require('express-graphql');
+const cors = require('cors');
+const schema = require('./schema/schema');
+const dbConnect = require('./database');
 
-const PORT = process.env.PORT || 5000
-const app = express()
+const PORT = process.env.PORT || 5000;
+const app = express();
 
-app.use(express.json())
-app.use(cors())
+app.use(express.json());
+app.use(cors());
 app.use('/graphql', graphqlHTTP({
   schema,
-  graphiql: true
-}))
+  graphiql: true,
+}));
 
-async function start () {
+async function start() {
   try {
-    await dbConnect()
+    await dbConnect();
     app.listen(PORT, () => {
-      console.log(`Server has been started at ${PORT}`)
-    })
+      console.log(`Server has been started at ${PORT}`);
+    });
   } catch (e) {
-    console.log(e)
+    console.error(e);
   }
 }
 
-start()
+start();
